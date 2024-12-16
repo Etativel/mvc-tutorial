@@ -1,12 +1,31 @@
 const express = require("express");
 const app = express();
 const PORT = 3000;
+const path = require("path");
 const useRoute = require("./routes/User.js");
+const { text } = require("stream/consumers");
+
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
 
 app.use("/user", useRoute);
 
+const assetsPath = path.join(__dirname, "public");
+app.use(express.static(assetsPath));
+
+const links = [
+  { href: "/", text: "home" },
+  { href: "about", text: "About" },
+];
+
+const users = ["Rose", "Cake", "Biff"];
+
 app.get("/", (req, res) => {
-  res.send("Home page");
+  res.render("index.ejs", { links: links, users: users });
+});
+
+app.get("/about", (req, res) => {
+  res.send("About page");
 });
 
 app.use((req, res) => {
