@@ -5,3 +5,17 @@ body {
 a {
   text-decoration: none;
 }
+
+.nav {
+  display: flex;
+  height: 80px;
+  background-color: aqua;
+}
+
+ul {
+  width: 100%;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+}
